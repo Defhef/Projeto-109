@@ -8,8 +8,7 @@ mp_hands = mp.solutions.hands
 hands = mp_hands.Hands()
 mp_draw = mp.solutions.drawing_utils
 cap = cv2.VideoCapture(0)
-image = pyautogui.screenshot()
-image = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR).cv2.imwrite("in_memory_to_disk.png", image)
+
 
 finger_tips =[8, 12, 16, 20]
 thumb_tip= 4
@@ -51,8 +50,12 @@ while True:
                 # ESCREVA O CÓDIGO AQUI
              image = pyautogui.screenshot()  
             pyautogui.screenshot("straight_to_disk.png")
-
             image.imread("straight_to_disk.png")
+            cv2.imwrite("in_memory_to_disk.png",image)
+                
+            image = pyautogui.screenshot()
+            image = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR).cv2.imwrite("in_memory_to_disk.png", image)
+
             cv2.imshow("Captura de tela", imutils.resize(image, width=600))
             
             mp_draw.draw_landmarks(img, hand_landmark,
